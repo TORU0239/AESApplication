@@ -8,21 +8,21 @@ import javax.crypto.SecretKey
 
 fun encrypt(password:String,
             key:SecretKey):ByteArray{
-    val cipher = Cipher.getInstance("AES")
+    val cipher = Cipher.getInstance(BuildConfig.KEY_ENCRYPTION)
     cipher.init(Cipher.ENCRYPT_MODE, key)
     return cipher.doFinal(password.toByteArray())
 }
 
 fun decrypt(password:ByteArray,
             key:SecretKey):String{
-    val cipher = Cipher.getInstance("AES")
+    val cipher = Cipher.getInstance(BuildConfig.KEY_ENCRYPTION)
     cipher.init(Cipher.DECRYPT_MODE, key)
     val output = cipher.doFinal(password)
     return String(output, Charsets.UTF_8)
 }
 
 fun generateKey():SecretKey{
-    val keyGen = KeyGenerator.getInstance("AES")
+    val keyGen = KeyGenerator.getInstance(BuildConfig.KEY_ENCRYPTION)
     keyGen.init(256)
     return keyGen.generateKey()
 }
