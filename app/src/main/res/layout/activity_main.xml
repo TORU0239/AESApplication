@@ -34,6 +34,18 @@
             android:orientation="vertical"
             app:layout_constraintGuide_end="16dp"/>
 
+        <TextView
+            android:id="@+id/txt_encrypted_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:visibility="gone"
+            tools:text="TEST"
+            tools:visibility="visible"
+            app:layout_constraintStart_toStartOf="@id/guide_vertical_start_16dp"
+            app:layout_constraintEnd_toEndOf="@id/guide_vertical_end_16dp"
+            app:layout_constraintBottom_toTopOf="@id/guide_horizontal_50"/>
+
         <EditText
             android:id="@+id/ed_user_id"
             android:layout_width="0dp"
@@ -41,20 +53,35 @@
             android:layout_marginBottom="5dp"
             android:maxLines="1"
             android:inputType="textEmailAddress"
+            android:text="@={viewModel.userIdLiveData}"
             app:layout_constraintStart_toStartOf="@id/guide_vertical_start_16dp"
             app:layout_constraintEnd_toEndOf="@id/guide_vertical_end_16dp"
-            app:layout_constraintBottom_toTopOf="@id/guide_horizontal_50"/>
+            app:layout_constraintBottom_toTopOf="@id/txt_encrypted_id"/>
 
         <EditText
             android:id="@+id/ed_user_password"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:text="@={viewModel.userPwdLiveData}"
             android:maxLines="1"
             android:inputType="textPassword"
             app:layout_constraintStart_toStartOf="@id/guide_vertical_start_16dp"
             app:layout_constraintEnd_toEndOf="@id/guide_vertical_end_16dp"
             app:layout_constraintTop_toBottomOf="@id/guide_horizontal_50"/>
+
+        <TextView
+            android:id="@+id/txt_encrypted_pwd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:visibility="visible"
+            android:text="@={viewModel.encryptedData}"
+            tools:text="TEST"
+            tools:visibility="visible"
+            app:layout_constraintStart_toStartOf="@id/guide_vertical_start_16dp"
+            app:layout_constraintEnd_toEndOf="@id/guide_vertical_end_16dp"
+            app:layout_constraintTop_toBottomOf="@id/ed_user_password"/>
 
         <Button
             android:id="@+id/btn_sign_in"
@@ -63,7 +90,7 @@
             android:layout_marginTop="5dp"
             android:text="SIGN IN"
             android:onClick="@{viewModel::onSignInButtonClick}"
-            app:layout_constraintTop_toBottomOf="@id/ed_user_password"
+            app:layout_constraintTop_toBottomOf="@id/txt_encrypted_pwd"
             app:layout_constraintStart_toStartOf="@id/guide_vertical_start_16dp"
             app:layout_constraintEnd_toEndOf="@id/guide_vertical_end_16dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
